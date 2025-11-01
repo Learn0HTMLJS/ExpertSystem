@@ -146,6 +146,10 @@
             <Form>fmParameters</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="AddQuestion.pas">
+            <Form>fmAddQuestion</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

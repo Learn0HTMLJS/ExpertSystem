@@ -10,7 +10,6 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     GroupBox1: TGroupBox;
-    CheckBox1: TCheckBox;
     Button2: TButton;
     Button3: TButton;
     procedure Button2Click(Sender: TObject);

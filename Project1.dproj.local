@@ -2,11 +2,15 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>1899.12.30 00:00:00.000.209,=C:\Users\User\Desktop\Институт\ExpSys\AddParam.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.575,=C:\Users\User\Desktop\Институт\ExpSys\DMbase.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.068,=C:\Users\User\Desktop\Институт\ExpSys\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.848,=C:\Users\User\Desktop\Институт\ExpSys\QuestionsAnswers.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.660,=C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.935,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\AddQuestion.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.282,=C:\Users\User\Desktop\Институт\ExpSys\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.575,=C:\Users\User\Desktop\Институт\ExpSys\DMbase.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.660,=C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.745,C:\Users\User\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\User\Desktop\Институт\ExpSys\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.848,=C:\Users\User\Desktop\Институт\ExpSys\QuestionsAnswers.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.935,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\AddQuestion.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.757,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
   </Transactions>
 </BorlandProject>
