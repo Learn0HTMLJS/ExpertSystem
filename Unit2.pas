@@ -48,10 +48,10 @@ var
   error: integer;
   sql :TStrings;
 begin
-  sql := TStrings.Create;
+  sql := TStringList.Create;
   SQL.Add('insert into [dbo].[Parameters] ([Name], [Type]) values');
-  SQL.Add('(''' + npName + '' + ', ' + IntToStr(npType) + ')');
-  SQL.Add('SELECT IDENT_CURRENT(''Parameters'') as cur, @@ERROR as Err');
+  SQL.Add('(''' + npName + ''' ' + ', ' + IntToStr(npType) + ')');
+  SQL.Add('SELECT IDENT_CURRENT( + ''' + 'Parameters' + ''' ' + ') as cur, @@ERROR as Err');
   doQuery(sql);
   error := quRab.FieldByName('Err').AsInteger;
   if Error <> 0 then
@@ -67,7 +67,7 @@ procedure TfmParameters.Button1Click(Sender: TObject);
 var
   newParName: String;
   npTypeId, cnt, id, mode: Integer;
-  sql :TStrings;
+  sql :TStringList;
 begin
   //Self.Visible := False;
   if not Assigned (fmAddParam) then
@@ -83,8 +83,8 @@ begin
   if mode = 0 then Exit;
   if mode = 1 then
   begin
-    sql := TStrings.Create;
-    SQL.Add('SELECT COUNT(*) as cnt FROM [dbo].[Parameters] WHERE [Name] = ''' + newParName + '');
+    sql := TStringList.Create;
+    SQL.Add('SELECT COUNT(*) as cnt FROM [dbo].[Parameters] WHERE [Name] = ''' + newParName + ''' ');
     doQuery(sql);
     cnt := quRab.FieldByName('cnt').AsInteger;
     if cnt <> 0 then
@@ -94,6 +94,8 @@ begin
     end;
     if AddPAram(newParName, npTypeId, id) then
     begin
+      quData.Close;
+      quData.Open;
       grParameters.Update;
       quData.Locate('Parameter_ID', id, []);
     end
@@ -110,7 +112,7 @@ procedure TfmParameters.Button3Click(Sender: TObject);
 var
   newParName: String;
   npTypeId, cnt, id, mode: Integer;
-  sql :TStrings;
+  sql :TStringList;
 begin
   id := dsData.DataSet.FieldByName('Parameter_ID').AsInteger;
   if not Assigned (fmAddParam) then
@@ -122,6 +124,8 @@ begin
   newParName := fmAddParam.ParamName;
   npTypeId := fmAddParam.pType;
   mode := fmAddParam.tag;
+
+  //  Доделать!
   fmAddParam.Free;
   fmAddParam := nil;
   if mode = 0 then Exit;

@@ -10,6 +10,8 @@ object fmAddQuestion: TfmAddQuestion
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnActivate = FormActivate
+  OnCreate = FormCreate
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -18,7 +20,6 @@ object fmAddQuestion: TfmAddQuestion
     Height = 29
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 72
     object Button1: TButton
       Left = 1
       Top = 1
@@ -27,9 +28,7 @@ object fmAddQuestion: TfmAddQuestion
       Align = alLeft
       Caption = 'Ok'
       TabOrder = 0
-      ExplicitLeft = 16
-      ExplicitTop = 8
-      ExplicitHeight = 33
+      OnClick = Button1Click
     end
     object Button2: TButton
       Left = 619
@@ -39,9 +38,7 @@ object fmAddQuestion: TfmAddQuestion
       Align = alRight
       Caption = 'Cancel'
       TabOrder = 1
-      ExplicitLeft = 592
-      ExplicitTop = 6
-      ExplicitHeight = 33
+      OnClick = Button2Click
     end
   end
   object GroupBox1: TGroupBox
@@ -52,7 +49,6 @@ object fmAddQuestion: TfmAddQuestion
     Align = alLeft
     Caption = #1058#1077#1082#1089#1090' '#1074#1086#1087#1088#1086#1089#1072
     TabOrder = 1
-    ExplicitHeight = 51
     object edText: TEdit
       Left = 2
       Top = 17
@@ -61,9 +57,6 @@ object fmAddQuestion: TfmAddQuestion
       Align = alClient
       TabOrder = 0
       Text = 'edText'
-      ExplicitLeft = 248
-      ExplicitTop = 16
-      ExplicitWidth = 121
       ExplicitHeight = 23
     end
   end
@@ -75,9 +68,6 @@ object fmAddQuestion: TfmAddQuestion
     Align = alClient
     Caption = #1058#1080#1087' '#1074#1086#1087#1088#1086#1089#1072
     TabOrder = 2
-    ExplicitLeft = 472
-    ExplicitWidth = 237
-    ExplicitHeight = 51
     object cbOpen: TCheckBox
       Left = 2
       Top = 17
@@ -86,17 +76,6 @@ object fmAddQuestion: TfmAddQuestion
       Align = alClient
       Caption = #1054#1090#1082#1088#1099#1090#1099#1081' '
       TabOrder = 0
-      ExplicitLeft = 24
-      ExplicitTop = 24
-      ExplicitWidth = 97
-      ExplicitHeight = 17
     end
-  end
-  object spAppendQuestion: TADOStoredProc
-    Connection = fmDmBase.dbConnection
-    ProcedureName = 'Append_Question'
-    Parameters = <>
-    Left = 544
-    Top = 24
   end
 end

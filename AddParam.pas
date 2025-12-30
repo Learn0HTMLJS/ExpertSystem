@@ -14,10 +14,10 @@ type
     Button2: TButton;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
-    dbcbType: TDBComboBox;
     edName: TEdit;
     dsTypes: TDataSource;
     quTypes: TADOQuery;
+    dbcbType: TDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);

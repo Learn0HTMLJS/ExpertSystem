@@ -150,6 +150,34 @@
             <Form>fmAddQuestion</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="AddRule.pas">
+            <Form>fmAddRule</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AddExcludeRule.pas">
+            <Form>fmAddExcludeRule</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="SelectAnswer.pas">
+            <Form>fmSelectAnswer</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Questionnaire.pas">
+            <Form>fmQuestionnaire</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Results.pas">
+            <Form>fmResults</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Attributes.pas">
+            <Form>fmAttributes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AttrParRules.pas">
+            <Form>fmAttrParRules</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

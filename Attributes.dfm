@@ -1,7 +1,7 @@
-object fmParameters: TfmParameters
+object fmAttributes: TfmAttributes
   Left = 0
   Top = 0
-  Caption = 'fmParameters'
+  Caption = 'fmAttributes'
   ClientHeight = 441
   ClientWidth = 624
   Color = clBtnFace
@@ -48,10 +48,9 @@ object fmParameters: TfmParameters
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       ImageMargins.Left = 10
       TabOrder = 2
-      OnClick = Button3Click
     end
   end
-  object grParameters: TDBGrid
+  object grAttributes: TDBGrid
     Left = 0
     Top = 0
     Width = 624
@@ -87,13 +86,14 @@ object fmParameters: TfmParameters
     Top = 40
   end
   object quData: TADOQuery
+    Active = True
     Connection = fmDmBase.dbConnection
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       
-        'SELECT A.Parameter_ID, A.Name, B.Name as TypeName FROM [dbo].[Pa' +
-        'rameters] A'
+        'SELECT A.Attribute_ID, A.Name, B.Name as TypeName FROM [dbo].[At' +
+        'tributes] A'
       'INNER JOIN [dbo].[DataTypes] B ON (A.Type = B.DataType_ID)')
     Left = 392
     Top = 40

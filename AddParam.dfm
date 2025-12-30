@@ -67,15 +67,19 @@ object fmAddParam: TfmAddParam
     Align = alClient
     Caption = #1058#1080#1087' '#1076#1072#1085#1085#1099#1093
     TabOrder = 2
-    object dbcbType: TDBComboBox
+    object dbcbType: TDBLookupComboBox
       Left = 2
       Top = 17
       Width = 275
       Height = 23
       Align = alClient
-      DataField = 'Name'
-      DataSource = dsTypes
+      DataField = 'DataType_ID'
+      KeyField = 'Name'
+      ListSource = dsTypes
       TabOrder = 0
+      ExplicitLeft = 88
+      ExplicitTop = 15
+      ExplicitWidth = 145
     end
   end
   object dsTypes: TDataSource
@@ -84,6 +88,7 @@ object fmAddParam: TfmAddParam
     Top = 25
   end
   object quTypes: TADOQuery
+    Active = True
     Connection = fmDmBase.dbConnection
     CursorType = ctStatic
     Parameters = <>

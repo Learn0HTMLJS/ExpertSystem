@@ -10,19 +10,19 @@ CREATE TABLE [dbo].[DataTypes]
 )
 GO
 insert into [dbo].[DataTypes] ([Name]) values 
- ('int'), 
- ('float'), 
- ('varchar100'), 
- ('varchar200'), 
- ('varchar500'), 
- ('MONEY'), 
- ('DATETIME')
+ ('int'),             -- 1
+ ('float'),           -- 2
+ ('varchar100'),      -- 3
+ ('varchar200'),      -- 4
+ ('varchar500'),      -- 5
+ ('MONEY'),           -- 6
+ ('DATETIME')         -- 7
 
 
 --	Аттрибуты
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Attributes]') and
 OBJECTPROPERTY(id, N'IsUserTable') = 1)
-drop table [dbo].[Attributes]
+drop table [dbo].[ParamToAttrRules]
 GO
 CREATE TABLE [dbo].[Attributes]
 (
@@ -41,8 +41,23 @@ GO
 CREATE TABLE [dbo].[Parameters]
 (
 	[Parameter_ID] [int] IDENTITY(1,1) PRIMARY KEY,
-	[Name] [varchar](200) NOT NULL,
+	[Name] [varchar](200) UNIQUE NOT NULL,
 	[Type] [int] NOT NULL FOREIGN KEY REFERENCES[DataTypes]([DataType_ID]),
+)
+
+--  Правила определения значений аттрибутов
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ParamToAttrRules]') and
+OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[ParamToAttrRules]
+GO
+
+CREATE TABLE [dbo].[ParamToAttrRules]
+(
+	[ParamToAttrRule_ID] [int] IDENTITY(1,1) PRIMARY KEY,
+ 	[Attribute_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Attributes]([Attribute_ID]),
+ 	[Paramrter_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Parameters]([Parameter_ID]),
+	[Condition] [varchar](1000) DEFAULT NULL, -- P operator Value	//	P - keyword
+	[ParamValue] [varchar](500) NOT NULL -- P = ...
 )
 
 --	Вопросы - ответы
@@ -140,7 +155,7 @@ CREATE TABLE [dbo].[QuestAnswers]
 (
 	[QuestAnswer_ID] [int] IDENTITY(1,1) PRIMARY KEY,
 	[Question_ID] [int]  NOT NULL FOREIGN KEY REFERENCES[Questions]([Question_ID]),
-	[Answ_ID] [int] FOREIGN KEY REFERENCES[Questions]([Question_ID]) default NULL, -- NULL - открытый вопрос
+	[Answ_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Answers]([Answer_ID]),
 )
 GO
 
@@ -154,22 +169,22 @@ DECLARE @ErrCode INT
 DECLARE @Qopen bit
 BEGIN
   SELECT @Qopen = IsOpen from [dbo].[Questions] WHERE [Question_ID] = @piQuestId
-  if ((@Qopen > 0) OR (@piAnswId = NULL))
+  if ((@Qopen > 0) OR (@piAnswId is NULL))
   begin
-	set @piNewCod = -1;
-	RETURN @ErrCode
+	  set @piNewCod = -1;
+	  RETURN @ErrCode
   end
   begin transaction
-  INSERT INTO [dbo].[QuestAnswers] ([Question_ID], [Answ_ID])
-  VALUES(@piQuestId, @piAnswId)
-  SET @ErrCode = @@ERROR
-  IF (@ErrCode <> 0)
-  begin
-    rollback transaction
-	RETURN @ErrCode
-  end
-  SELECT @piNewCod = IDENT_CURRENT('QuestAnswers');
-  SET @ErrCode = @@ERROR
+    INSERT INTO [dbo].[QuestAnswers] ([Question_ID], [Answ_ID])
+    VALUES(@piQuestId, @piAnswId)
+    SET @ErrCode = @@ERROR
+    IF (@ErrCode <> 0)
+    begin
+      rollback transaction
+	    RETURN @ErrCode
+    end
+    SELECT @piNewCod = IDENT_CURRENT('QuestAnswers');
+    SET @ErrCode = @@ERROR
   commit transaction
   RETURN @ErrCode
 END
@@ -183,10 +198,11 @@ GO
 CREATE TABLE [dbo].[QuestRules]
 (
 	[QuestRule_ID] [int] IDENTITY(1,1) PRIMARY KEY,
-	[QuestAnswer_ID] [int]  NOT NULL FOREIGN KEY REFERENCES[QuestAnswers]([QuestAnswer_ID]),
+	[QuestAnswer_ID] [int] FOREIGN KEY REFERENCES[QuestAnswers]([QuestAnswer_ID]) DEFAULT NULL,
+	[Question_ID] [int]  FOREIGN KEY REFERENCES[Questions]([Question_ID]) DEFAULT NULL,
 	[Paramrter_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Parameters]([Parameter_ID]),
-	[Condition] [varchar](1000) NOT NULL, -- if () then //see on next string
-	[ParamValue] [varchar](500) NOT NULL -- P = ...
+	[Condition] [varchar](1000) DEFAULT NULL, -- if () then //see on next string
+	[ParamValue] [varchar](500) NOT NULL -- P =
 )
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ExcludeRules]') and
@@ -197,6 +213,83 @@ CREATE TABLE [dbo].[ExcludeRules]
 (
 	[ExcludeRules_ID] [int] IDENTITY(1,1) PRIMARY KEY,
 	[QuestRule_ID] [int] FOREIGN KEY REFERENCES[QuestRules]([QuestRule_ID]),
-	[Question_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Questions]([Question_ID])
+	[Question_ID] [int] NOT NULL FOREIGN KEY REFERENCES[Questions]([Question_ID]) -- До какого пропустить
 )
+GO
+
+-- Хранимая процедура для безопасного удаления вопроса
+IF EXISTS(SELECT name FROM dbo.sysobjects WHERE name = 'DeleteQuestionSafe' AND type = 'P')
+   DROP PROCEDURE [dbo].[DeleteQuestionSafe]
+GO
+
+CREATE PROCEDURE [dbo].[DeleteQuestionSafe] @piQuestionID INT
+AS
+DECLARE @ErrCode INT
+BEGIN
+  BEGIN TRANSACTION
+
+  -- Удаляем правила исключения, связанные с этим вопросом
+  DELETE FROM [dbo].[ExcludeRules]
+  WHERE [Question_ID] = @piQuestionID;
+
+  SET @ErrCode = @@ERROR
+  IF @ErrCode <> 0
+  BEGIN
+    ROLLBACK TRANSACTION
+    RETURN @ErrCode
+  END
+
+  -- Удаляем связи вопрос-ответ
+  DELETE FROM [dbo].[QuestAnswers]
+  WHERE [Question_ID] = @piQuestionID;
+
+  SET @ErrCode = @@ERROR
+  IF @ErrCode <> 0
+  BEGIN
+    ROLLBACK TRANSACTION
+    RETURN @ErrCode
+  END
+
+  -- Обновляем связи в цепочке вопросов
+  DECLARE @PrevID INT, @NextID INT
+  SELECT @PrevID = [Previos], @NextID = [Next]
+  FROM [dbo].[Questions]
+  WHERE [Question_ID] = @piQuestionID;
+
+  IF @PrevID IS NOT NULL
+  BEGIN
+    UPDATE [dbo].[Questions] SET [Next] = @NextID WHERE [Question_ID] = @PrevID;
+    SET @ErrCode = @@ERROR
+    IF @ErrCode <> 0
+    BEGIN
+      ROLLBACK TRANSACTION
+      RETURN @ErrCode
+    END
+  END
+
+  IF @NextID IS NOT NULL
+  BEGIN
+    UPDATE [dbo].[Questions] SET [Previos] = @PrevID WHERE [Question_ID] = @NextID;
+    SET @ErrCode = @@ERROR
+    IF @ErrCode <> 0
+    BEGIN
+      ROLLBACK TRANSACTION
+      RETURN @ErrCode
+    END
+  END
+
+  -- Удаляем сам вопрос
+  DELETE FROM [dbo].[Questions]
+  WHERE [Question_ID] = @piQuestionID;
+
+  SET @ErrCode = @@ERROR
+  IF @ErrCode <> 0
+  BEGIN
+    ROLLBACK TRANSACTION
+    RETURN @ErrCode
+  END
+
+  COMMIT TRANSACTION
+  RETURN 0
+END
 GO

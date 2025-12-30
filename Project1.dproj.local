@@ -1,16 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.209,=C:\Users\User\Desktop\Институт\ExpSys\AddParam.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.068,=C:\Users\User\Desktop\Институт\ExpSys\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.935,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\AddQuestion.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.282,=C:\Users\User\Desktop\Институт\ExpSys\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.575,=C:\Users\User\Desktop\Институт\ExpSys\DMbase.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.072,C:\Users\User\Desktop\Институт\ExpSys\Results.dfm=C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.072,C:\Users\User\Desktop\Институт\ExpSys\Results.pas=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.047,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\AttrParRules.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.446,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\SelectAnswer.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.909,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.958,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.757,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.676,C:\Users\User\Desktop\Институт\ExpSys\AddExcludeRule.dfm=C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.068,=C:\Users\User\Desktop\Институт\ExpSys\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.282,=C:\Users\User\Desktop\Институт\ExpSys\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.676,C:\Users\User\Desktop\Институт\ExpSys\AddExcludeRule.pas=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.575,=C:\Users\User\Desktop\Институт\ExpSys\DMbase.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\AddRule.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.813,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\Attributes.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.935,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\AddQuestion.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,C:\Users\User\Desktop\Институт\ExpSys\Unit3.dfm=C:\Users\User\Desktop\Институт\ExpSys\Questionnaire.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\Questionnaire.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.446,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\SelectAnswer.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.813,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\Attributes.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.047,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\AttrParRules.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.660,=C:\Users\User\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.745,C:\Users\User\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\User\Desktop\Институт\ExpSys\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.848,=C:\Users\User\Desktop\Институт\ExpSys\QuestionsAnswers.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.209,=C:\Users\User\Desktop\Институт\ExpSys\AddParam.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.828,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\AddRule.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.981,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.935,C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas=C:\Users\User\Desktop\Институт\ExpSys\AddQuestion.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.757,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.376,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.365,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.880,=C:\Users\User\Desktop\Институт\ExpSys\Unit3.pas</Transaction>
   </Transactions>
 </BorlandProject>
